@@ -1,0 +1,103 @@
+<nav class="bg-white shadow-sm p-4 flex justify-between items-center">
+    <div class="flex items-center space-x-6">
+        <h2 id="page-title" class="text-xl font-semibold text-gray-800">Dashboard</h2>
+        <div class="hidden md:flex space-x-4">
+            <button class="px-3 py-1 text-sm text-gray-600 hover:text-primary-600">
+                <i class="fas fa-sync-alt mr-1"></i> Refresh
+            </button>
+            <button class="px-3 py-1 text-sm text-gray-600 hover:text-primary-600">
+                <i class="fas fa-filter mr-1"></i> Filter
+            </button>
+        </div>
+    </div>
+
+    <div class="flex items-center space-x-6">
+        <!-- Search Bar -->
+        <div class="hidden md:flex items-center">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="w-64 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                <button class="absolute right-3 top-2.5 text-gray-500 hover:text-primary-600">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="relative">
+            <button class="relative p-2 text-gray-500 hover:text-primary-600 focus:outline-none">
+                <i class="fas fa-bell text-xl"></i>
+                <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+        </div>
+
+        <!-- Messages -->
+        <div class="relative">
+            <button class="relative p-2 text-gray-500 hover:text-primary-600 focus:outline-none">
+                <i class="fas fa-envelope text-xl"></i>
+                <span class="absolute top-1 right-1 w-2 h-2 bg-primary-500 rounded-full"></span>
+            </button>
+        </div>
+
+        <!-- User Profile -->
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white cursor-pointer">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="hidden md:block">
+                <p class="text-sm font-medium text-gray-800">Nguyen15idhue</p>
+                <p class="text-xs text-gray-500">Administrator</p>
+            </div>
+            <button class="text-gray-500 hover:text-primary-600 focus:outline-none">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-gray-500 hover:text-primary-600 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Dropdown Menus (Hidden by default) -->
+<div id="notifications-dropdown" class="hidden absolute right-32 mt-2 w-80 bg-white rounded-lg shadow-lg z-50">
+    <div class="p-4 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-800">Notifications</h3>
+    </div>
+    <div class="max-h-96 overflow-y-auto">
+        <div class="p-4 border-b border-gray-100 hover:bg-gray-50">
+            <div class="flex items-start">
+                <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-gray-800">New account registration</p>
+                    <p class="text-xs text-gray-500">2 minutes ago</p>
+                </div>
+            </div>
+        </div>
+        <!-- Add more notification items here -->
+    </div>
+    <div class="p-4 border-t border-gray-200">
+        <a href="#" class="text-sm text-primary-600 hover:text-primary-800">View all notifications</a>
+    </div>
+</div>
+
+<!-- User Profile Dropdown (Hidden by default) -->
+<div id="profile-dropdown" class="hidden absolute right-4 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+    <div class="py-1">
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-user-circle mr-2"></i> My Profile
+        </a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-cog mr-2"></i> Settings
+        </a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-key mr-2"></i> Change Password
+        </a>
+        <div class="border-t border-gray-200"></div>
+        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+            <i class="fas fa-sign-out-alt mr-2"></i> Sign out
+        </a>
+    </div>
+</div>

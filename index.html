@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Store - Admin Dashboard</title>
+    
+    <!-- External CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/components/buttons.css">
+    <link rel="stylesheet" href="assets/css/components/forms.css">
+    <link rel="stylesheet" href="assets/css/components/sidebar.css">
+    <link rel="stylesheet" href="assets/css/components/tables.css">
+    <link rel="stylesheet" href="assets/css/components/cards.css">
+    <link rel="stylesheet" href="assets/css/layouts/main.css">
+    <link rel="stylesheet" href="assets/css/layouts/dashboard.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <!-- Load Sidebar Component -->
+    <div id="sidebar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content min-h-screen">
+        <!-- Load Header Component -->
+        <div id="header-container"></div>
+        
+        <!-- Content Area -->
+        <div class="p-6">
+            <div id="content-container">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- User Information (Hidden) -->
+    <div id="user-info" class="hidden" 
+         data-username="Nguyen15idhue" 
+         data-current-time="2025-04-03 17:42:30"
+         data-timezone="UTC">
+    </div>
+
+    <!-- External JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Core JavaScript -->
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Component JavaScript -->
+    <script src="assets/js/components/sidebar.js"></script>
+    <script src="assets/js/components/charts.js"></script>
+    
+    <!-- Page Specific JavaScript -->
+    <script src="assets/js/pages/dashboard.js"></script>
+    <script src="assets/js/pages/accounts.js"></script>
+    <script src="assets/js/pages/payments.js"></script>
+    <script src="assets/js/pages/invoices.js"></script>
+    <script src="assets/js/pages/reports.js"></script>
+    <script src="assets/js/pages/settings.js"></script>
+
+    <script>
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Components
+            fetch('components/sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-container').innerHTML = data;
+                    // Initialize sidebar events after loading
+                    initializeSidebar();
+                });
+
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    // Update header with user info
+                    updateHeaderInfo();
+                });
+
+            // Load default page (dashboard)
+            loadContent('dashboard');
+
+            // Set up real-time updates
+            setupRealtimeUpdates();
+        });
+
+        // Content Loading Function
+        function loadContent(contentId) {
+            // Show loading state
+            document.getElementById('content-container').innerHTML = '<div class="flex justify-center items-center h-64"><i class="fas fa-spinner fa-spin text-primary-600 text-3xl"></i></div>';
+
+            // Load page content
+            fetch(`pages/${contentId}.html`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('content-container').innerHTML = data;
+                    
+                    // Update page title
+                    const pageTitle = document.getElementById('page-title');
+                    const titles = {
+                        'dashboard': 'Dashboard',
+                        'accounts': 'Register Accounts',
+                        'payments': 'Payments',
+                        'invoices': 'Invoices',
+                        'reports': 'Reports',
+                        'settings': 'Settings'
+                    };
+                    pageTitle.textContent = titles[contentId];
+                    
+                    // Initialize page-specific features
+                    switch(contentId) {
+                        case 'dashboard':
+                            initDashboard();
+                            break;
+                        case 'reports':
+                            initReports();
+                            break;
+                        case 'accounts':
+                            initAccounts();
+                            break;
+                        case 'payments':
+                            initPayments();
+                            break;
+                        case 'invoices':
+                            initInvoices();
+                            break;
+                        case 'settings':
+                            initSettings();
+                            break;
+                    }
+
+                    // Initialize charts if needed
+                    if(contentId === 'dashboard' || contentId === 'reports') {
+                        initCharts();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                    document.getElementById('content-container').innerHTML = `
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            <p>Error loading content. Please try again.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        // Update Header Information
+        function updateHeaderInfo() {
+            const userInfo = document.getElementById('user-info');
+            const username = userInfo.getAttribute('data-username');
+            const currentTime = userInfo.getAttribute('data-current-time');
+
+            // Update user display name
+            const userDisplay = document.querySelector('.header-username');
+            if (userDisplay) {
+                userDisplay.textContent = username;
+            }
+
+            // Update last login time
+            const lastLogin = document.querySelector('.header-last-login');
+            if (lastLogin) {
+                lastLogin.textContent = `Last login: ${currentTime}`;
+            }
+        }
+
+        // Setup Real-time Updates
+        function setupRealtimeUpdates() {
+            // Update current time every minute
+            setInterval(() => {
+                const now = new Date();
+                const formattedTime = now.toISOString().replace('T', ' ').substring(0, 19);
+                document.getElementById('user-info').setAttribute('data-current-time', formattedTime);
+                updateHeaderInfo();
+            }, 60000);
+
+            // Check for notifications
+            setInterval(checkNotifications, 300000); // Every 5 minutes
+
+            // Monitor database connection
+            setInterval(() => {
+                console.log('Database connection active');
+            }, 5000);
+        }
+
+        // Check for New Notifications
+        function checkNotifications() {
+            // Implement notification checking logic here
+            console.log('Checking for new notifications...');
+        }
+
+        // Initialize Sidebar Events
+        function initializeSidebar() {
+            // Add click handlers for sidebar links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const contentId = link.getAttribute('data-content');
+                    loadContent(contentId);
+                });
+            });
+
+            // Initialize sidebar toggle
+            const toggleBtn = document.querySelector('.sidebar-toggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', toggleSidebar);
+            }
+        }
+    </script>
+</body>
+</html>

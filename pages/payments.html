@@ -1,0 +1,118 @@
+<div id="payments-content">
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-gray-800">Payment Transactions</h2>
+            <div class="flex space-x-2">
+                <button class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-download mr-2"></i> Export
+                </button>
+                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-filter mr-2"></i> Filter
+                </button>
+            </div>
+        </div>
+        
+        <div class="mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Payment Method</label>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                        <option>All Methods</option>
+                        <option>Credit Card</option>
+                        <option>PayPal</option>
+                        <option>Bank Transfer</option>
+                        <option>Crypto</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Select date range">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                        <option>All Statuses</option>
+                        <option>Completed</option>
+                        <option>Pending</option>
+                        <option>Failed</option>
+                        <option>Refunded</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Method</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TXN-001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025-04-03</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Netflix Premium</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">John Doe</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$12.99</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">PayPal</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <button class="text-primary-600 hover:text-primary-900"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TXN-002</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025-04-02</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Spotify Premium</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jane Smith</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$9.99</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Credit Card</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <button class="text-primary-600 hover:text-primary-900"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TXN-003</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025-04-01</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">YouTube Premium</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mike Johnson</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$11.99</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Crypto</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Failed</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <button class="text-primary-600 hover:text-primary-900"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-4 flex items-center justify-between">
+            <div class="text-sm text-gray-500">
+                Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">24</span> results
+            </div>
+            <div class="flex space-x-1">
+                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Previous</button>
+                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-white bg-primary-600 hover:bg-primary-700">1</button>
+                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">2</button>
+                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">3</button>
+                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

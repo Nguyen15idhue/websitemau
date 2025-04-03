@@ -1,0 +1,78 @@
+<div class="sidebar fixed h-full w-64 bg-white shadow-lg z-10">
+    <div class="p-4 flex items-center border-b border-gray-200">
+        <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white">
+            <i class="fas fa-user-shield text-xl"></i>
+        </div>
+        <div class="ml-3 logo-text">
+            <h1 class="text-lg font-bold text-gray-800">AccountStore</h1>
+            <p class="text-xs text-gray-500">Admin Panel</p>
+        </div>
+    </div>
+    
+    <div class="p-4">
+        <ul class="space-y-2">
+            <li>
+                <a href="#" onclick="loadContent('dashboard')" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 group">
+                    <i class="fas fa-tachometer-alt text-gray-500 group-hover:text-primary-600"></i>
+                    <span class="ml-3 menu-text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="loadContent('accounts')" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 group">
+                    <i class="fas fa-user-plus text-gray-500 group-hover:text-primary-600"></i>
+                    <span class="ml-3 menu-text">Register Accounts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="loadContent('payments')" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 group">
+                    <i class="fas fa-credit-card text-gray-500 group-hover:text-primary-600"></i>
+                    <span class="ml-3 menu-text">Payments</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="loadContent('invoices')" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 group">
+                    <i class="fas fa-file-invoice-dollar text-gray-500 group-hover:text-primary-600"></i>
+                    <span class="ml-3 menu-text">Invoices</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="loadContent('reports')" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 group">
+                    <i class="fas fa-chart-bar text-gray-500 group-hover:text-primary-600"></i>
+                    <span class="ml-3 menu-text">Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="loadContent('settings')" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 group">
+                    <i class="fas fa-cog text-gray-500 group-hover:text-primary-600"></i>
+                    <span class="ml-3 menu-text">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="absolute bottom-0 w-full p-4 border-t border-gray-200">
+        <button onclick="toggleSidebar()" class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-600 w-full">
+            <i class="fas fa-chevron-left"></i>
+            <span class="ml-3 menu-text">Collapse</span>
+        </button>
+    </div>
+
+    <!-- User Profile Section -->
+    <div class="absolute bottom-16 w-full p-4 border-t border-gray-200">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white">
+                <i class="fas fa-user text-lg"></i>
+            </div>
+            <div class="menu-text">
+                <p class="text-sm font-medium text-gray-800">Nguyen15idhue</p>
+                <p class="text-xs text-gray-500">Administrator</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current UTC Time -->
+    <div class="absolute bottom-36 w-full px-4 menu-text">
+        <p class="text-xs text-gray-500">Current UTC Time:</p>
+        <p class="text-sm text-gray-700" id="current-utc-time">2025-04-03 17:32:47</p>
+    </div>
+</div>
